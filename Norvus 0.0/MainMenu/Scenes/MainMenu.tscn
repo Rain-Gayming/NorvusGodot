@@ -1,0 +1,109 @@
+[gd_scene load_steps=2 format=3 uid="uid://4bu4e4iupbqr"]
+
+[ext_resource type="Script" path="res://MainMenu/Scripts/MainMenu.gd" id="1_d33mf"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("continueMenu", "loadMenu", "newGameMenu", "settingsMenu")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d33mf")
+continueMenu = NodePath("MenuHolder/ContinueMenu")
+loadMenu = NodePath("MenuHolder/LoadGameMenu")
+newGameMenu = NodePath("MenuHolder/NewGameMenu")
+settingsMenu = NodePath("MenuHolder/SettingsMenu")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 17.0
+offset_top = 252.0
+offset_right = 113.0
+offset_bottom = 423.0
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/Buttons"]
+layout_mode = 2
+text = " Play"
+
+[node name="LoadButton" type="Button" parent="CanvasLayer/Buttons"]
+layout_mode = 2
+text = "Load Game"
+
+[node name="NewButton" type="Button" parent="CanvasLayer/Buttons"]
+layout_mode = 2
+text = "New Game"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/Buttons"]
+layout_mode = 2
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/Buttons"]
+layout_mode = 2
+text = "Exit"
+
+[node name="MenuHolder" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ContinueMenu" type="Control" parent="MenuHolder"]
+anchors_preset = 0
+offset_left = 134.0
+offset_top = 252.0
+offset_right = 274.0
+offset_bottom = 425.0
+
+[node name="Label" type="Label" parent="MenuHolder/ContinueMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Continue"
+
+[node name="LoadGameMenu" type="Control" parent="MenuHolder"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 134.0
+offset_top = 252.0
+offset_right = 274.0
+offset_bottom = 425.0
+
+[node name="Label" type="Label" parent="MenuHolder/LoadGameMenu"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Load"
+
+[node name="NewGameMenu" type="Control" parent="MenuHolder"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 134.0
+offset_top = 252.0
+offset_right = 274.0
+offset_bottom = 425.0
+
+[node name="Label" type="Label" parent="MenuHolder/NewGameMenu"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "New Game"
+
+[node name="SettingsMenu" type="Control" parent="MenuHolder"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 134.0
+offset_top = 252.0
+offset_right = 274.0
+offset_bottom = 425.0
+
+[node name="Label" type="Label" parent="MenuHolder/SettingsMenu"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Settings"
+
+[connection signal="button_up" from="CanvasLayer/Buttons/ContinueButton" to="." method="_ContinueButtonPressed"]
+[connection signal="button_up" from="CanvasLayer/Buttons/LoadButton" to="." method="_LoadButtonPressed"]
+[connection signal="button_up" from="CanvasLayer/Buttons/NewButton" to="." method="_NewGameButtonPressed"]
+[connection signal="button_up" from="CanvasLayer/Buttons/SettingsButton" to="." method="_SettingsButtonPressed"]
+[connection signal="button_up" from="CanvasLayer/Buttons/ExitButton" to="." method="_ExitButtonPressed"]

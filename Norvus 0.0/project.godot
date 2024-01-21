@@ -11,5 +11,11 @@ config_version=5
 [application]
 
 config/name="mini-rpg"
+run/main_scene="res://MainMenu/Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
