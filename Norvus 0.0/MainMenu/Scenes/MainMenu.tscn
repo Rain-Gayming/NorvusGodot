@@ -16,6 +16,7 @@ continueMenu = NodePath("MenuHolder/ContinueMenu")
 loadMenu = NodePath("MenuHolder/LoadGameMenu")
 newGameMenu = NodePath("MenuHolder/NewGameMenu")
 settingsMenu = NodePath("MenuHolder/SettingsMenu")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Buttons" type="VBoxContainer" parent="CanvasLayer"]
