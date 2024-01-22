@@ -2,13 +2,11 @@
 
 [ext_resource type="Script" path="res://MainMenu/Scripts/MainMenu.gd" id="1_d33mf"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("continueMenu", "loadMenu", "newGameMenu", "settingsMenu")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("continueMenu", "loadMenu", "newGameMenu", "settingsMenu", "settingsTabs")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 768.0
-offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d33mf")
@@ -16,6 +14,7 @@ continueMenu = NodePath("MenuHolder/ContinueMenu")
 loadMenu = NodePath("MenuHolder/LoadGameMenu")
 newGameMenu = NodePath("MenuHolder/NewGameMenu")
 settingsMenu = NodePath("MenuHolder/SettingsMenu")
+settingsTabs = NodePath("MenuHolder/SettingsMenu/TabContainer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -48,10 +47,11 @@ text = "Exit"
 
 [node name="MenuHolder" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_right = 1152.0
+offset_bottom = 648.0
 
 [node name="ContinueMenu" type="Control" parent="MenuHolder"]
+visible = false
 anchors_preset = 0
 offset_left = 134.0
 offset_top = 252.0
@@ -65,6 +65,7 @@ offset_bottom = 23.0
 text = "Continue"
 
 [node name="LoadGameMenu" type="Control" parent="MenuHolder"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 134.0
@@ -73,11 +74,13 @@ offset_right = 274.0
 offset_bottom = 425.0
 
 [node name="Label" type="Label" parent="MenuHolder/LoadGameMenu"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Load"
 
 [node name="NewGameMenu" type="Control" parent="MenuHolder"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 134.0
@@ -86,25 +89,66 @@ offset_right = 274.0
 offset_bottom = 425.0
 
 [node name="Label" type="Label" parent="MenuHolder/NewGameMenu"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "New Game"
 
 [node name="SettingsMenu" type="Control" parent="MenuHolder"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 134.0
-offset_top = 252.0
-offset_right = 274.0
-offset_bottom = 425.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="MenuHolder/SettingsMenu"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Settings"
+
+[node name="Background" type="PanelContainer" parent="MenuHolder/SettingsMenu"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 73.0
+offset_right = 1041.0
+offset_bottom = 575.0
+
+[node name="Control" type="Control" parent="MenuHolder/SettingsMenu/Background"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MenuHolder/SettingsMenu"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 77.0
+offset_right = 1041.0
+offset_bottom = 575.0
+tab_alignment = 1
+
+[node name="Gameplay" type="Control" parent="MenuHolder/SettingsMenu/TabContainer"]
+layout_mode = 2
+
+[node name="Video" type="Control" parent="MenuHolder/SettingsMenu/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Graphics" type="Control" parent="MenuHolder/SettingsMenu/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Controls" type="Control" parent="MenuHolder/SettingsMenu/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="MenuHolder/SettingsMenu/TabContainer"]
+visible = false
+layout_mode = 2
 
 [connection signal="button_up" from="CanvasLayer/Buttons/ContinueButton" to="." method="_ContinueButtonPressed"]
 [connection signal="button_up" from="CanvasLayer/Buttons/LoadButton" to="." method="_LoadButtonPressed"]
 [connection signal="button_up" from="CanvasLayer/Buttons/NewButton" to="." method="_NewGameButtonPressed"]
 [connection signal="button_up" from="CanvasLayer/Buttons/SettingsButton" to="." method="_SettingsButtonPressed"]
 [connection signal="button_up" from="CanvasLayer/Buttons/ExitButton" to="." method="_ExitButtonPressed"]
+[connection signal="tab_clicked" from="MenuHolder/SettingsMenu/TabContainer" to="." method="_OnSettingsTabClicked"]
+[connection signal="pressed" from="MenuHolder/SettingsMenu/TabContainer/Exit" to="." method="_ExitSettingsPressed"]
